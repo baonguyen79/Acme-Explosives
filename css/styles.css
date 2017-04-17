@@ -1,12 +1,13 @@
 #product-list > h4{
 
 	color: blue;
+	margin-top: 25px;
 
 }
 
 #product-list > p{
 
-	color: red;
+	/*color: red;*/
 	margin-left: 30px;
 
 }
@@ -20,7 +21,7 @@
 
 #product-list > h5{
 
-	color: red;
+	/*color: red;*/
 	font-size: 15px;
 	font-weight: bold;
 

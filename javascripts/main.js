@@ -5,6 +5,7 @@ $(function(){
 	var typeArray     = [];
 	var productArray  = [];
 
+	// Promise of categories
 	var categoriesJSON = function(){
 	        return new Promise(function(resolve, reject){
 	            $.ajax("./db/categories.json").done(function(catData){
@@ -15,6 +16,7 @@ $(function(){
 	        })
 	   	 };
 
+	// Promise of Types	 
 	var typeJSON = function(){
 	        return new Promise(function(resolve, reject){
 	            $.ajax("./db/types.json").done(function(typeData){
@@ -25,7 +27,7 @@ $(function(){
 	        })
 	   	 };   	 
 
-
+	// Promise of Products   	 
 	var productJSON = function(){
 	        return new Promise(function(resolve, reject){
 	            $.ajax("./db/products.json").done(function(prodData){
@@ -37,7 +39,7 @@ $(function(){
 	   	 };
 	   	 
 
-
+	//Return category , types , product arrays   	 
 	categoriesJSON().then(function(jsonCategory){
         categoryArray = jsonCategory;
        	makeDropdownList(categoryArray);
@@ -51,17 +53,17 @@ $(function(){
     	productArray = jsonProduct;
     });         
 
-
+    // Call function to create event for dropdown catergories button to load types and products arrays
     $(".dropdown-menu").on('click', 'li', function(){	
        var catSelectId = $(this).attr('id');
         console.log(catSelectId , $(this).text());
-    	makeDOM(catSelectId, categoryArray, typeArray, productArray);
+    	makeDOM(catSelectId, categoryArray, typeArray, productArray);  
    	 });
 
 
  });
 
-
+// Function to create dropdown DOM button for catergories select
 function makeDropdownList (categoryArray){
 
 	$.each(categoryArray, function(i, item) {
@@ -71,6 +73,7 @@ function makeDropdownList (categoryArray){
 
 }
 
+// Function to create DOM types and products for selected category 
 function makeDOM(catSelectId, categoryArray, typeArray, productArray){
 	var showType = "";
 	var showProd = "";
@@ -81,7 +84,6 @@ function makeDOM(catSelectId, categoryArray, typeArray, productArray){
 		if (catSelectId == typeArray[t].category){
 
 			if (showType == "Y"){
-				// domString += `<div class="col-sm-4"`;
 				domString += `<h4>${typeArray[t].name} - ${typeArray[t].description}</h4>`;
 				showType = "N";
 			}
