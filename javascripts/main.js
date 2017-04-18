@@ -83,10 +83,14 @@ function makeDOM(catSelectId, categoryArray, typeArray, productArray){
 		showType = "Y";
 		if (catSelectId == typeArray[t].category){
 
-			if (showType == "Y"){
+			//types Heading DOM
+			if (showType == "Y"){						
+				domString += `<div class="col-md-3">`;
 				domString += `<h4>${typeArray[t].name} - ${typeArray[t].description}</h4>`;
 				showType = "N";
 			}
+
+			//Product DOM
 			showProd = "Y";
 			for (var p = 0; p<productArray.length; p++){
 				if (typeArray[t].id == productArray[p].type){
@@ -97,8 +101,15 @@ function makeDOM(catSelectId, categoryArray, typeArray, productArray){
 					domString += `<p>${productArray[p].name} - ${productArray[p].description}</p>`;
 				}			
 			}
+
+			if (showType == 'N'){
+				domString += `</div>`;
+				showType = "";
+
+			}
 		}
 	}
+	// Replace  HTML
 	$('#product-list').html(domString);
 
 
